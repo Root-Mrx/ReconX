@@ -8,39 +8,41 @@ Requirements and Setup
 Required External Tools
 This project depends on the following external tools. Please install them before running the tool:
 
-subfinder
+subfinder:
+```copy
 Install and setup instructions: https://github.com/projectdiscovery/subfinder
-
-assetfinder
+```
+assetfinder:
+```copy
 Install and setup instructions: https://github.com/tomnomnom/assetfinder
-
-dnsx
+```
+dnsx:
+```copy
 Install and setup instructions: https://github.com/projectdiscovery/dnsx
-
-dnsgen
+```
+dnsgen:
+```cppy
 Install and setup instructions: https://github.com/ProjectDiscovery/dnsgen
-
-httpx (optional, for extended HTTP probing)
+```
+httpx (optional, for extended HTTP probing):
+```copy
 Install and setup instructions: https://github.com/projectdiscovery/httpx
-
+```
 Python Dependencies
 This project uses the following Python libraries. You can install them with pip:
 
 ‍‍```bahs
 pip install -r requirements.txt
 ```
+```
 Alternatively, install them manually:
-
 ```bash
 pip install requests beautifulsoup4 rich
 ```
 Usage
 Clone the repository or download the project files.
-
 Make sure all required external tools are installed and accessible in your system's PATH.
-
 Prepare a resolver list file at resolver/resolvers.txt (you can find public resolvers lists online).
-
 Run the main script:
 
 ```bash
