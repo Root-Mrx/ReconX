@@ -421,6 +421,13 @@ def phase_two(wordlist_path=None, main_domains=None):
         task_dnsgen = progress.add_task(f"{CYAN}Running dnsgen + dnsx filter...{RESET}", total=None)
         run_dnsgen_and_filter_with_dnsx()
         progress.update(task_dnsgen, description=f"{GREEN}dnsgen done ✓{RESET}")
+        os.remove("results/output.txt") if os.path.isfile("results/wildcard_test.txt") else None
+        os.remove("results/output.txt") if os.path.isfile("results/wildcard_hits.txt") else None
+        os.remove("results/output.txt") if os.path.isfile("results/cleaned_subs.txt") else None
+
+
+
+
 
     print(f"\n{GREEN}[✓]{RESET} Phase 2 complete!")
 
