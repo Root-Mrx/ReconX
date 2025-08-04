@@ -36,7 +36,7 @@ logging.basicConfig(
 def run_command(cmd, timeout=300):
     logging.info(f"Executing: {cmd}")
     try:
-        result = subprocess.run(cmd, shell=True, check=True, stdout=subprocess.DEVNULL)
+        result = subprocess.run(cmd, shell=True, text=True, capture_output=True, timeout=timeout)
         if result.returncode != 0:
             logging.warning(f"Command failed ({result.returncode}): {cmd}\nStderr: {result.stderr.strip()}")
         return result.stdout.strip()
@@ -393,6 +393,8 @@ def main():
     else:
         print(f"{YELLOW}[~]{RESET} Skipping phase 2.")
 
+
+phase_two_ran = False
 def phase_two(wordlist_path=None, main_domains=None):
     logging.info("Phase 2 started")
     print(f"\n{CYAN}[~]{RESET} Phase 2: Cleaning, appending wordlist, running dnsx, wildcard detection, dnsgen...\n")
@@ -421,13 +423,6 @@ def phase_two(wordlist_path=None, main_domains=None):
         task_dnsgen = progress.add_task(f"{CYAN}Running dnsgen + dnsx filter...{RESET}", total=None)
         run_dnsgen_and_filter_with_dnsx()
         progress.update(task_dnsgen, description=f"{GREEN}dnsgen done ✓{RESET}")
-        os.remove("results/output.txt") if os.path.isfile("results/wildcard_test.txt") else None
-        os.remove("results/output.txt") if os.path.isfile("results/wildcard_hits.txt") else None
-        os.remove("results/output.txt") if os.path.isfile("results/cleaned_subs.txt") else None
-
-
-
-
 
     print(f"\n{GREEN}[✓]{RESET} Phase 2 complete!")
 
