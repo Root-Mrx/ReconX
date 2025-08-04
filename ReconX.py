@@ -36,7 +36,7 @@ logging.basicConfig(
 def run_command(cmd, timeout=300):
     logging.info(f"Executing: {cmd}")
     try:
-        result = subprocess.run(cmd, shell=True, text=True, capture_output=True, timeout=timeout)
+        result = subprocess.run(cmd, shell=True, check=True, stdout=subprocess.DEVNULL)
         if result.returncode != 0:
             logging.warning(f"Command failed ({result.returncode}): {cmd}\nStderr: {result.stderr.strip()}")
         return result.stdout.strip()
